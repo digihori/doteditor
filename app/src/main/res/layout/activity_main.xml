@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="tk.horiuchi.doteditor.MainActivity">
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <tk.horiuchi.doteditor.MyEditView
+                    android:id="@+id/myEditView"
+                    android:layout_width="130dp"
+                    android:layout_height="182dp"
+                    />
+
+                <TextView
+                    android:id="@+id/text1"
+                    android:textSize="24sp"
+                    android:textColor="#000000"
+                    android:text=""
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btn1"
+                        android:textSize="20sp"
+                        android:text="L/R"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <Button
+                        android:id="@+id/btn2"
+                        android:textSize="20sp"
+                        android:text="U/D"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <Button
+                        android:id="@+id/btn3"
+                        android:textSize="20sp"
+                        android:text="ROT"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <Button
+                        android:id="@+id/btn4"
+                        android:textSize="20sp"
+                        android:text="CLR"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+    </FrameLayout>
+
+
+</android.support.constraint.ConstraintLayout>
