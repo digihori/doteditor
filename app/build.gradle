@@ -2,14 +2,14 @@ apply plugin: 'com.android.application'
 def applicationName = "doteditor"
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
     buildToolsVersion '28.0.3'
     defaultConfig {
         applicationId "tk.horiuchi.doteditor"
         minSdkVersion 15
-        targetSdkVersion 28
-        versionCode 2
-        versionName "2.0"
+        targetSdkVersion 29
+        versionCode 3
+        versionName "3.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         archivesBaseName = "${applicationName}-${versionName}"
     }
