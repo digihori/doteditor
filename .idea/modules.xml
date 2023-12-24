@@ -2,10 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/doteditor.iml" filepath="$PROJECT_DIR$/doteditor.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/doteditor-app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/doteditor-app.iml" group="doteditor/app" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/work-doteditor.iml" filepath="$PROJECT_DIR$/.idea/modules/work-doteditor.iml" group="doteditor" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/doteditor.iml" filepath="$PROJECT_DIR$/.idea/modules/doteditor.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/doteditor.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/doteditor.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/doteditor.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/doteditor.app.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/doteditor.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/doteditor.app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/doteditor.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/doteditor.app.unitTest.iml" />
     </modules>
   </component>
 </project>
