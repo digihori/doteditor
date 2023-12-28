@@ -1,6 +1,11 @@
 package tk.horiuchi.doteditor;
 
-import android.support.v7.app.AppCompatActivity;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
+import android.content.SharedPreferences;
+import androidx.preference.PreferenceManager;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -22,14 +27,39 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         scale = metrics.scaledDensity;
         Log.w("Main", String.format("scaledDensity=%f\n", scale));
 
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        boolean init = prefs.getBoolean("init", false);
+        if (!init) {
+            digit[0] = 0x42;
+            digit[1] = 0x6f;
+            digit[2] = 0x7f;
+            digit[3] = 0x7f;
+            digit[4] = 0x72;
+        } else {
+            for (int i = 0; i < digit.length; i++) {
+                digit[i] = prefs.getInt("digit" + i, 0);
+            }
+        }
         setContentView(R.layout.activity_main);
 
         findViewById(R.id.btn1).setOnClickListener(this);
         findViewById(R.id.btn2).setOnClickListener(this);
         findViewById(R.id.btn3).setOnClickListener(this);
         findViewById(R.id.btn4).setOnClickListener(this);
+        findViewById(R.id.btnCopy).setOnClickListener(this);
 
         ((TextView)findViewById(R.id.text1)).setText(String.format("%02X %02X %02X %02X %02X", digit[0], digit[1], digit[2], digit[3], digit[4]));
+    }
+
+    @Override
+    protected void onPause() {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        for (int i = 0; i < digit.length; i++) {
+            prefs.edit().putInt("digit"+i, digit[i]).apply();
+        }
+        prefs.edit().putBoolean("init", true).apply();
+        Log.w("Main", "onPause!!!");
+        super.onPause();
     }
 
     public void onClick(View v) {
@@ -48,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btn2: // 上下
                 for (int i = 0; i < 5; i++) {
-                    digit[i] = swapbit(digit[i]);
+                    digit[i] = swapBit(digit[i]);
                 }
                 findViewById(R.id.myEditView).invalidate();
                 break;
@@ -60,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 digit[1] = digit[3];
                 digit[3] = temp;
                 for (int i = 0; i < 5; i++) {
-                    digit[i] = swapbit(digit[i]);
+                    digit[i] = swapBit(digit[i]);
                 }
                 findViewById(R.id.myEditView).invalidate();
                 break;
@@ -70,7 +100,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 findViewById(R.id.myEditView).invalidate();
                 break;
-
+            case R.id.btnCopy: // クリップボードコピー
+                StringBuilder str = new StringBuilder();
+                for (int i = 0; i < 5; i++) {
+                    //str += String.format("&%02X,", digit[i]);
+                    str.append(String.format("&%02X,", digit[i]));
+                }
+                ClipboardManager clipboardManager =
+                        (ClipboardManager) this.getSystemService(Context.CLIPBOARD_SERVICE);
+                if (null == clipboardManager) {
+                    return;
+                }
+                clipboardManager.setPrimaryClip(ClipData.newPlainText("", str.toString()));
+                Log.w("btnCopy", String.format("copy -> '%s'", str));
+                break;
             default:
                 break;
 
@@ -78,7 +121,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    private int swapbit(int x) {
+    private int swapBit(int x) {
         int ans = 0;
         ans |= (x & 1) << 6;
         ans |= (x & 2) << 4;

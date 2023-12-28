@@ -19,6 +19,7 @@ import static tk.horiuchi.doteditor.MainActivity.scale;
 
 public class MyEditView extends View implements View.OnTouchListener {
     //private float scale = 2;
+    private final Paint paint = new Paint();
 
     public MyEditView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -33,7 +34,6 @@ public class MyEditView extends View implements View.OnTouchListener {
         int stp_x, stp_y, d_row, d_col;
         int x, y;
         int i, j;
-        Paint p = new Paint();
 
         stp_x = 26;
         stp_y = 26;
@@ -41,16 +41,16 @@ public class MyEditView extends View implements View.OnTouchListener {
         d_col=5;
         canvas.drawColor(0xFFEEFFFF);
 
-        p.setStyle(Paint.Style.FILL);
+        paint.setStyle(Paint.Style.FILL);
 
         for (j = 0, x = 0; j < d_col; j++, x += stp_x) {
             for (i = 0, y = 0; i < d_row; i++, y += stp_y) {
-                if ((digit[0 * d_col + j] & 0x01 << i) != 0) {
-                    p.setColor(Color.DKGRAY);
+                if ((digit[j] & 0x01 << i) != 0) {
+                    paint.setColor(Color.DKGRAY);
                 } else {
-                    p.setColor(0xffdcdcdc);
+                    paint.setColor(0xffdcdcdc);
                 }
-                canvas.drawRect(x+1, y+1, x + stp_x, y + stp_y, p);
+                canvas.drawRect(x+1, y+1, x + stp_x, y + stp_y, paint);
             }
         }
 
