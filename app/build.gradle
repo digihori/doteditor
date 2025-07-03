@@ -5,14 +5,14 @@ def applicationName = "doteditor"
 
 android {
     namespace 'tk.horiuchi.doteditor'
-    compileSdk 34
+    compileSdk 35
 
     defaultConfig {
         applicationId "tk.horiuchi.doteditor"
         minSdk 24
-        targetSdk 34
-        versionCode 6
-        versionName "6.00"
+        targetSdk 35
+        versionCode 7
+        versionName "7.00"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         archivesBaseName = "${applicationName}-${versionName}"
@@ -42,6 +42,6 @@ dependencies {
     testImplementation libs.junit
     androidTestImplementation libs.ext.junit
     androidTestImplementation libs.espresso.core
-    implementation 'androidx.preference:preference:1.0.0'
+    implementation 'androidx.preference:preference:1.2.1'
 
 }
